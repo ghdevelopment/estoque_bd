@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estoque de Produtos</title>
+    <!-- url_for('static', ...) gera o caminho do arquivo CSS na pasta static -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Estoque de Produtos</h1>
+
+    <!-- FORMULÁRIO
+         action: para qual rota do Flask os dados serão enviados.
+         method="post": envia os dados "escondidos", não aparecem na URL.
+         O atributo name de cada campo é o nome que o Python usa em request.form. -->
+    <form action="{{ url_for('cadastrar') }}" method="post">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" maxlength="100" required>
+
+        <label for="preco">Preço (R$)</label>
+        <!-- step="0.01" permite duas casas decimais, igual ao DECIMAL(10,2) -->
+        <input type="number" id="preco" name="preco" step="0.01" min="0" required>
+
+        <label for="quantidade">Quantidade</label>
+        <input type="number" id="quantidade" name="quantidade" step="1" min="0" required>
+
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <h2>Produtos cadastrados</h2>
+
+    {# Tudo entre chaves com % e chaves duplas é Jinja, a linguagem de modelos do Flask.
+       Chaves com % executam lógica (if, for); chaves duplas mostram um valor na página. #}
+    {% if produtos %}
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
+        </tr>
+        <!-- Cada produto é uma tupla: [0]=id, [1]=nome, [2]=preco, [3]=quantidade -->
+        {% for produto in produtos %}
+        <tr>
+            <td>{{ produto[0] }}</td>
+            <td>{{ produto[1] }}</td>
+            <td>R$ {{ produto[2] }}</td>
+            <td>{{ produto[3] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>Nenhum produto cadastrado ainda.</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,51 @@
+/* style.css — visual simples, só para organizar a página */
+
+body {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 0 16px;
+    color: #222;
+}
+
+/* Formulário: um campo embaixo do outro */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+input {
+    padding: 6px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    background: #2c6eb5;
+    color: white;
+    cursor: pointer;
+}
+
+/* Tabela de produtos */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 6px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+th {
+    background: #eee;
+}
